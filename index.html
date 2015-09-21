@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>For Science!</title>
+
+<link rel="icon" 
+      type="image/png" 
+      href="images/favicon.png" />
+      
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script> 
+<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+<script type="text/javascript" src="scripts/knockout.js"></script>
+<script type="text/javascript" src="scripts/knockoutlocalStorage.js"></script>
+<script type="text/javascript" src="scripts/tabs.js"></script> 
+<script type="text/javascript"><!--
+	div = {
+		show: function(elem) {
+			document.getElementById(elem).style.visibility = 'visible';
+		},
+		hide: function(elem) {
+			document.getElementById(elem).style.visibility = 'hidden';
+		}
+	}
+--></script>
+ 
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="css/styles.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body onload="init()">
+<div id="wrapper">
+
+	<div id="row1">
+    	<div class="col-md-6">
+        	<div id="logo">
+            	<a href="#"><img src="images/logo.png" border="0" /></a>
+            </div><!-- end logo -->
+        </div>
+        <div class="col-md-6">
+        	<div id="corpnav">
+            	<ul>
+                	<li><span id="autosavenote">autosaving...</span></li>
+                	<li><a href="#" id="savegame">Save</a></li>
+                    <li><a href="#" id="resetgame" data-bind="click: resetGame">Reset</a></li>
+                    <li>Reddit</li>
+                    <li>Version #.#.#</li>
+                </ul>
+            </div>
+        	<button id="click" data-bind="click: increaseClicks">Conduct Research</button>
+        </div>
+    <div class="clearboth"></div>
+    </div><!-- end row1 -->
+    <div class="clearboth"></div>
+    <div id="row2">      
+    	<div class="col-md-7" id="mainui">
+        	<div id="tablabels">
+                <ul id="tabs">
+                    <li id="mainlabel"><a href="#maintab">Main</a></li>
+                    <li id="anilabel"><a href="#anitab">Ani</a></li>
+                    <li id="kokolabel"><a href="#kokotab">Koko</a></li>
+                    <li id="meinalabel"><a href="#meinatab">Meina</a></li>
+                    <li id="sirinlabel"><a href="#sirintab">Sirin</a></li>
+                    <li id="touriklabel" class="last"><a href="#touriktab">Tourik</a></li>
+                 </ul>
+        	</div>
+            <div class="infowindow">
+            	<div id="maintab" class="tabcontent">
+                	<div id="total_clicks">Research: <span data-bind="text: clicks.amount">0</span> / <span data-bind="text: cabinets.capacity">0</span></div>
+                    <div id="research_per_second">Research per second: <span data-bind="text: programs.rps">0</span></div>
+                    
+                    <table width="100%" id="resourcestable">
+                    	<tr>
+                    		<td width="80%"><a class="resourcename" onMouseOver="div.show('programdesc-top')" onMouseOut="div.hide('programdesc-top')">Programs</a>: <span id="programamount" data-bind="text: programs.amount">0</span></td>
+                            <td>+</td>
+                            <td><button id="buyprogram1" data-bind="click: buyProgram" onMouseOver="div.show('programdesc-top')" onMouseOut="div.hide('programdesc-top')">1</button></td>
+                            <td><button id="buyprogram5" onMouseOver="div.show('programdesc-top')" onMouseOut="div.hide('programdesc-top')">5</button></td>
+                            <td><button id="buyprogram20" onMouseOver="div.show('programdesc-top')" onMouseOut="div.hide('programdesc-top')">20</button></td>
+                            <td><button id="buyprogram100" onMouseOver="div.show('programdesc-top')" onMouseOut="div.hide('programdesc-top')">100</button></td>
+                         </tr>
+                         <tr class="unshaded"><td colspan="6"><div class="desc-top" id="programdesc-top"><img src="images/desc-triangle.gif" class="desc-triangle"/> <div id="programdesc" class="description">this is program's description</div></div></td></tr>
+                         
+                         <tr>
+                    		<td width="80%"><a class="resourcename" onMouseOver="div.show('moneydesc-top')" onMouseOut="div.hide('moneydesc-top')">Money</a>: <span id="moneyamount" data-bind="text: money.amount">0</span></td>
+                            <td>+</td>
+                            <td><button id="buymoney1" data-bind="click: buyMoney" onMouseOver="div.show('moneydesc-top')" onMouseOut="div.hide('moneydesc-top')">1</button></td>
+                            <td><button id="buymoney5" onMouseOver="div.show('moneydesc-top')" onMouseOut="div.hide('moneydesc-top')">5</button></td>
+                            <td><button id="buymoney20" onMouseOver="div.show('moneydesc-top')" onMouseOut="div.hide('moneydesc-top')">20</button></td>
+                            <td><button id="buymoney100" onMouseOver="div.show('moneydesc-top')" onMouseOut="div.hide('moneydesc-top')">100</button></td>
+                         </tr>
+                         <tr class="unshaded"><td colspan="6"><div class="desc-top" id="moneydesc-top"><img src="images/desc-triangle.gif" class="desc-triangle"/> <div id="moneydesc" class="description">this is money's description</div></div></td></tr>
+                         
+                         <tr>
+                    		<td width="80%"><a class="resourcename"onMouseOver="div.show('papersdesc-top')" onMouseOut="div.hide('papersdesc-top')">Papers</a>: <span id="papersamount" data-bind="text: papers.amount">0</span></td>
+                            <td>+</td>
+                            <td><button id="buypapers1" data-bind="click: buyPapers" onMouseOver="div.show('papersdesc-top')" onMouseOut="div.hide('papersdesc-top')">1</button></td>
+                            <td><button id="buypapers5" onMouseOver="div.show('papersdesc-top')" onMouseOut="div.hide('papersdesc-top')">5</button></td>
+                            <td><button id="buypapers20" onMouseOver="div.show('papersdesc-top')" onMouseOut="div.hide('papersdesc-top')">20</button></td>
+                            <td><button id="buypapers100" onMouseOver="div.show('papersdesc-top')" onMouseOut="div.hide('papersdesc-top')">100</button></td>
+                         </tr>
+                         <tr class="unshaded"><td colspan="6"><div class="desc-top" id="papersdesc-top"><img src="images/desc-triangle.gif" class="desc-triangle"/> <div id="papersdesc" class="description">this is paper's description</div></div></td></tr>
+                         
+                         <tr>
+                    		<td width="80%"><a class="resourcename"onMouseOver="div.show('cabinetsdesc-top')" onMouseOut="div.hide('cabinetsdesc-top')">Cabinets</a>: <span id="cabinetsamount" data-bind="text: cabinets.amount">1</span></td>
+                            <td>+</td>
+                            <td><button id="buycabinets1" data-bind="click: buyCabinets" onMouseOver="div.show('cabinetsdesc-top')" onMouseOut="div.hide('cabinetsdesc-top')">1</button></td>
+                            <td><button id="buycabinets5" onMouseOver="div.show('cabinetsdesc-top')" onMouseOut="div.hide('cabinetsdesc-top')">5</button></td>
+                            <td><button id="buycabinets20" onMouseOver="div.show('cabinetsdesc-top')" onMouseOut="div.hide('cabinetsdesc-top')">20</button></td>
+                            <td><button id="buycabinets100" onMouseOver="div.show('cabinetsdesc-top')" onMouseOut="div.hide('cabinetsdesc-top')">100</button></td>
+                         </tr>
+                         <tr class="unshaded"><td colspan="6"><div class="desc-top" id="cabinetsdesc-top"><img src="images/desc-triangle.gif" class="desc-triangle"/> <div id="cabinetsdesc" class="description">this is cabinets's description</div></div></td></tr>
+                     </table>
+                    
+                </div><!-- end maintab --> 
+                
+                <div id="anitab" class="tabcontent">
+                	<p>this is ani's tab</p>
+                </div><!-- end anitab -->
+                
+                <div id="kokotab" class="tabcontent">
+                	<p>this is koko's tab</p>
+                </div><!-- end kokotab -->
+                
+                <div id="meinatab" class="tabcontent">
+                	<p>this is meina's tab</p>
+                </div><!-- end meinatab -->
+                
+                <div id="sirintab" class="tabcontent">
+                	<p>this is sirin's tab</p>
+                </div><!-- end sirintab -->
+                
+                <div id="touriktab" class="tabcontent">
+                	<p>this is tourik's tab</p>
+                </div><!-- end touriktab -->
+            </div><!-- end infowindow -->
+
+        </div><!-- end mainui and row2col1 -->
+        
+        <div class="col-md-5">
+        	<div id="newslogwrapper">
+            	<div id="newslog">You are a scientist</div>
+        	</div><!-- end newslogwrapper -->
+        </div><!-- end row2col2 -->
+        
+    </div><!-- end row2 -->
+    
+	<div id="row3">
+    	<div id="lowertablabels">
+        	<ul>
+            	<li class="upgrades">Upgrades</li>
+                <li>Collaborations</li>
+                <li class="last">RAs</li>
+            </ul>
+        </div><!-- end lowertablabels -->
+        
+        <div id="lowerui">
+            <p><strong>Upgrades</strong></p>
+            <button id="programminglvl2">Attend programming conference</button>
+        </div><!-- end lowerui -->
+    </div><!-- end row3 -->
+    
+</div><!-- end wrapper -->
+<script type="text/javascript" src="scripts/script.js"></script>
+</body>
+</html>

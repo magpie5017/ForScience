@@ -1,0 +1,246 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Page Layout */
+
+body {
+	font-size: 12px;	
+}
+
+#wrapper {
+	width: 900px;
+	margin: 0 auto;
+}
+
+#row1 {
+	border-bottom: #CCC thin solid;
+}
+
+#row2 {
+	height: 450px;	
+}
+
+#row3 {
+	height: 200px;	
+}
+
+
+/* Interface Fixes */
+
+::-webkit-scrollbar { /* scrollbar fixes */
+    width: 12px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+ 
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+
+*:focus { /* stop chrome border when clicking buttons */
+    outline: 0;
+}
+
+
+/* Master Styles */
+
+.hidden {
+	display: none;
+}
+
+.clearboth {
+	clear: both;	
+}
+
+button {
+	background-color: #ccc;	
+	-moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius:6px;
+    color: #fff;
+	border: none;
+}
+
+button:hover {
+	background-color: #999;	
+}
+
+.buybuttons {
+	float:right;
+	margin-top: -1px;	
+}
+
+
+/* Container Divs */
+
+#logo {
+	margin: 20px 0 10px 40px;	
+}
+
+#click {
+	height: 50px;
+	width: 250px;
+	float: right;
+	margin: 15px 300px 0 0;
+	font-size: 18px;
+	border: 2px outset buttonface;
+}
+
+button#click:active {
+	background-color: #666;	
+}
+
+#mainui {
+	border-right: #ccc solid thin;	
+	padding-left: 0;
+}
+
+.infowindow {
+	padding: 20px 10px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	height: 400px;
+}
+
+#newslogwrapper {
+	width: 100%;
+	height: 400px;
+	overflow-y: auto;
+	float: left;
+	margin: 50px 0 15px 10px;
+}
+
+#newslog {
+	height: 100%;
+	width: 100%;
+}
+
+
+/* Corp Nav */
+
+#corpnav {
+	float: right;
+	background: linear-gradient(to left, #ccc , #fff);
+	border-radius: 10px;
+	width: 410px;
+}
+
+#corpnav ul {
+	list-style: none;
+	float: right;
+	margin: 0 20px 5px 0;	
+}
+
+#corpnav li {
+	float: left;
+	margin: 10px 5px 5px 5px;	
+}
+
+#autosavenote {
+	display: none;	
+}
+
+
+/* Main Tab Navigation */
+
+#tablabels {
+	background-color: #CCC;
+	height: 40px;	
+}
+
+#tablabels ul {
+	list-style: none;
+	padding-left: 2px;
+	padding-top: 10px;	
+}
+
+#tablabels ul li {
+	border-right: #e5e5e5 thin solid;	
+	display: inline;
+}
+
+#tablabels ul li a {
+	color: #000;
+	text-decoration: underline;	
+	padding: 5px 23px 15px 23px;
+}
+
+#tablabels ul li.last {
+	border-right: none;	
+}
+
+#tablabels ul li a.selected {
+	background-color: #fff;
+	border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.tabcontent.hide {
+	display: none;	
+}
+
+
+/* Lower Tab Navigation */
+
+#lowertablabels {
+	background-color: #CCC;
+	height: 40px;	
+}
+
+#lowertablabels ul {
+	list-style: none;
+	padding-left: 2px;	
+}
+
+#lowertablabels ul li {
+	float: left;
+	padding: 5px 23px 10px 23px;
+	border-right: #e5e5e5 thin solid;	
+	margin: 3px 0 0 0;
+}
+
+#lowertablabels ul li.last {
+	border-right: none;	
+}
+
+#lowertablabels ul li.upgrades {
+	background-color: #fff;	
+}
+
+
+/* Resource List Interface */
+
+#resourcestable tr {
+	background-color: #e5e5e5;
+	padding: 2px 5px;	
+}
+
+#resourcestable tr.unshaded {
+	background-color: #fff;	
+}
+
+.resourcename {
+	background-color: #ccc;
+	cursor: text;
+	text-decoration: none;
+	color: #000;
+}
+
+a.resourcename:hover {
+	text-decoration: none;
+	color: #000;	
+}
+
+.desc-top {
+	visibility: hidden;	
+	color: #999;	
+}
+
+.desc-triangle {
+	float: left;
+	margin: 4px 5px 0 20px;	
+}
